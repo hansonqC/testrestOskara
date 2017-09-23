@@ -1,5 +1,6 @@
 package pl.hanosnq.models;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -15,7 +16,7 @@ public class Utils {
             HttpURLConnection urlConnection = (HttpURLConnection) new URL(url).openConnection();
             StringBuilder builder = new StringBuilder();
             int read = 0;
-            while ((read = urlConnection.getInputStream().read()) != -1)){
+            while ((read = urlConnection.getInputStream().read()) != -1){
                 builder.append((char) read);
             }
             System.out.println(builder.toString());
@@ -26,5 +27,26 @@ public class Utils {
             e.printStackTrace();
         }
 return null;
+    }
+
+
+
+    public static String makeHttpsRequest(String url){
+
+        try {
+            HttpsURLConnection urlConnection = (HttpsURLConnection) new URL(url).openConnection();
+            StringBuilder builder = new StringBuilder();
+            int read = 0;
+            while ((read = urlConnection.getInputStream().read()) != -1){
+                builder.append((char) read);
+            }
+            System.out.println(builder.toString());
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
